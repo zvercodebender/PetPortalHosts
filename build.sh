@@ -3,16 +3,13 @@
 export CLI_VERSION="9.7.0"
 export VERSION="2.0.1"
 
-XLD_USER=${{ secrets.XLD_USER }}
-XLD_PASSWD=${{ secrets.XLD_PASSWD }}
-
-
 cd artifacts/aws.ec2_instance
 zip -r ../aws.ec2_instance.zip ./*
 
 cd ../..
 curl -LO https://dist.xebialabs.com/public/xl-cli/$CLI_VERSION/linux-amd64/xl
 chmod +x xl
+echo $XLD_USER
 ./xl apply --xl-deploy-url=http://xlr.rbroker.linkpc.net --xl-deploy-username=$XLD_USER --xl-release-password=$XLD_PASSWD --file petportalhosts.yaml --values version=$VERSION
 
 rm artifacts/aws.ec2_instance.zip
