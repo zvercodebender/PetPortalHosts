@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: Build
         env:
-        XLD_USER: ${{ secrets.XLD_USER }}
-        XLD_PASSWD: ${{ secrets.XLD_PASSWD }}
+          XLD_USER: ${{ secrets.XLD_USER }}
+          XLD_PASSWD: ${{ secrets.XLD_PASSWD }}
       - uses: actions/checkout@v2
       - run: ./build.sh
