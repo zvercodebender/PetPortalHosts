@@ -22,6 +22,10 @@ spec:
     type: template.overthere.SshHost
     instanceName: '{{project}}/TEST/{{%outputVariables.ec2_server_public_dns%}}'
     childTemplates:
+    - name: jbosss
+      type: template.jbossdm.StandaloneServer
+      home: /opt/wildfly
+      port: "9990"
     - name: tomcat
       type: template.tomcat.Server
       childTemplates:
