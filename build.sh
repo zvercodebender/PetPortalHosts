@@ -9,6 +9,6 @@ zip -r ../aws.ec2_instance.zip ./*
 cd ../..
 curl -LO https://dist.xebialabs.com/public/xl-cli/$CLI_VERSION/linux-amd64/xl
 chmod +x xl
-./xl apply --xl-deploy-username=$XLD_USER --xl-release-password=$XLD_PASSWD --file petportalhosts.yaml --values version=$VERSION
+./xl apply --xl-deploy-url=https://xlr.rbroker.linkpc.net --xl-deploy-username=$XLD_USER --xl-release-password=$XLD_PASSWD --file petportalhosts.yaml --values version=$VERSION
 
 rm artifacts/aws.ec2_instance.zip
