@@ -30,5 +30,6 @@ resource "aws_instance" "bdd" {
                   sudo yum -y install tomcat tomcat-admin-webapps
                   sudo systemctl enable tomcat
                   sudo systemctl start tomcat
+                  wget https://download.jboss.org/wildfly/21.0.0.Final/wildfly-21.0.0.Final.zip
                   EOF
 }
