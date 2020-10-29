@@ -3,6 +3,10 @@
 export CLI_VERSION="9.7.0"
 export VERSION="2.0.1"
 
+XLD_USER=${{ secrets.XLD_USER }}
+XLD_PASSWD=${{ secrets.XLD_PASSWD }}
+
+
 cd artifacts/aws.ec2_instance
 zip -r ../aws.ec2_instance.zip ./*
 
