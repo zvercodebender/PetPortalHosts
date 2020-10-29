@@ -4,12 +4,9 @@ jobs:
   build-pet-portal-hosts-version:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: build
         env:
           XLD_USER: ${{ secrets.XLD_USER }}
           XLD_PASSWD: ${{ secrets.XLD_PASSWD }}
-      - uses: actions/checkout@v2
-      - run: ./build.sh
-        env:
-          XLD_USER: ${{ secrets.XLD_USER }}
-          XLD_PASSWD: ${{ secrets.XLD_PASSWD }}
+        run: ./build.sh
