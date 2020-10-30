@@ -88,3 +88,22 @@ spec:
     inputVariables:
       project: rrb-aws
     file: !file "artifacts/aws.ec2_instance.zip"
+
+  - name: database
+    type: terraform.Module
+    preScannedPlaceholders: true
+    placeholders:
+    - AWSRegion
+    - AWS_SECRET_KEY
+    - AWS_ACCESS_KEY
+    - MYSQL_USER
+    - MYSQL_PASSWD
+    fileEncodings:
+      ".+\\.properties": ISO-8859-1
+    environmentPath: '{{PROJECT}}/{{PROJECT}}-DEV'
+    automaticDictionary: "true"
+    dictionaryPath: '{{PROJECT}}-dic'
+    generateCIsFromResources: "true"
+    inputVariables:
+      project: rrb-aws
+    file: !file "artifacts/aws.rds.zip"
