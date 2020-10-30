@@ -67,7 +67,7 @@ resource "aws_instance" "appserver" {
       type        = "ssh"
       user        = "ec2-user"
       private_key = "/home/rick/Documents/keypass/rbroker-us1.pem"
-      host        = "${aws_instance.appserver.public_ip}"
+      host        = self.public_dns
     }
   }
   provisioner "file" {
@@ -78,7 +78,7 @@ resource "aws_instance" "appserver" {
       type        = "ssh"
       user        = "ec2-user"
       private_key = "/home/rick/Documents/keypass/rbroker-us1.pem"
-      host        = "${aws_instance.appserver.public_ip}"
+      host        = self.public_dns
     }
   }
 }
