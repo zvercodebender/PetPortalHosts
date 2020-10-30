@@ -79,5 +79,5 @@ resource "aws_instance" "appserver" {
         private_key = "/home/rick/Documents/keypass/rbroker-us1.pem"
         host        = "${self.public_dns}"
       }
-
+    }
 }
