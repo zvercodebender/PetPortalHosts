@@ -70,10 +70,7 @@ spec:
     username: ec2-user
     privateKeyFile: /opt/xebialabs/xl-deploy-server/conf/rbroker-us1.pem
     sudoUsername: root
-
-
-
-
+  #############################################################################
   deployables:
   - name: servers
     type: terraform.Module
@@ -108,7 +105,7 @@ spec:
       ".+\\.properties": ISO-8859-1
     environmentPath: '{{PROJECT}}/{{PROJECT}}-DEV'
     automaticDictionary: "true"
-    dictionaryPath: '{{PROJECT}}-dic'
+    dictionaryPath: '{{PROJECT}}-db-dic'
     generateCIsFromResources: "true"
     inputVariables:
       project: rrb-aws

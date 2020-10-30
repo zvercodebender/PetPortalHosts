@@ -2,7 +2,7 @@ export MYSQL_DRIVER_VERSION="mysql-connector-java-5.1.40"
 curl -LO http://dev.mysql.com/get/Downloads/Connector-J/${MYSQL_DRIVER_VERSION}.zip
 unzip -q /tmp/downloads/${MYSQL_DRIVER_VERSION}.zip -d /tmp
 count=0
-nohup sudo /opt/wildfly/bin/standalone.sh -Djboss.bind.address=localhost -Djboss.bind.address.management=localhost &
+sudo /opt/wildfly/bin/standalone.sh -Djboss.bind.address=localhost -Djboss.bind.address.management=localhost &
 while true
 do
   if [ $count -le 90 ]; then

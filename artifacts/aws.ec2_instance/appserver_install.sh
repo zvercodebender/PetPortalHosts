@@ -11,3 +11,4 @@ sudo mv /opt/wildfly-* /opt/wildfly
 sudo /home/ec2-user/resources/install-mysql-driver.sh
 sudo cp ~/resources/mgmt-users.properties /opt/wildfly/standalone/configuration/mgmt-users.properties
 sudo cp ~/resources/mgmt-users.properties /opt/wildfly/domain/configuration/mgmt-users.properties
+nohup sudo /opt/wildfly/bin/standalone.sh -Djboss.bind.address=localhost -Djboss.bind.address.management=localhost &
