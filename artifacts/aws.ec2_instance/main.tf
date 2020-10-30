@@ -66,18 +66,30 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = "/home/rick/.ssh/rbroker-us1.pem"
+      private_key = file("/home/rick/.ssh/rbroker-us1.pem")
       host        = self.public_dns
     }
   }
-  provisioner "file" {
-    source      = "${path.module}/resources/install-mysql-driver.sh"
-    destination = "~/resources/install-mysql-driver.sh"
+  provisioner "remote-exec" {
+    inline = [
+         "mkdir /home/ec2-user/resources"
+         ]
 
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = "/home/rick/.ssh/rbroker-us1.pem"
+      private_key = file("~/.ssh/rbroker-us1.pem")
+      host        = self.public_dns
+    }
+  }
+  provisioner "file" {
+    source      = "${path.module}/resources/*"
+    destination = "~/resources/"
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("/home/rick/.ssh/rbroker-us1.pem")
       host        = self.public_dns
     }
   }
