@@ -8,11 +8,11 @@ provider "aws" {
 
 resource "aws_db_instance" "mysqldb" {
   allocated_storage    = 100
-  db_subnet_group_name = "db-subnetgrp"
+  db_subnet_group_name = "default"
   engine               = "mysql"
   engine_version       = "5.7.19"
   identifier           = "mysqldb"
-  instance_class       = "db.t2.large"
+  instance_class       = "db.t2.micro"
   password             = "{{DB_USERNAME}}"
   skip_final_snapshot  = true
   storage_encrypted    = true
