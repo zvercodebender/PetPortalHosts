@@ -30,7 +30,7 @@ spec:
       stopCommand: systemctl stop httpd
       restartCommand: systemctl restart httpd
       defaultDocumentRoot: /var/www/html
-      configurationFragmentDirectory: /etc/httpd/httpd.d
+      configurationFragmentDirectory: /etc/httpd/conf.d
     os: UNIX
     connectionType: SUDO
     address: '{{%outputVariables.webserver_public_dns%}}'
