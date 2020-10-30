@@ -47,17 +47,17 @@ spec:
       type: template.jbossdm.StandaloneServer
       home: /opt/wildfly
       port: "9990"
-    - name: tomcat
-      type: template.tomcat.Server
-      childTemplates:
-      - name: webapps
-        type: template.tomcat.VirtualHost
-      home: /var/lib/tomcat
-      startCommand: systemctl start tomcat
-      stopCommand: systemctl stop tomcat
-      statusCommand: systemctl status tomcat
-      startWaitTime: "10"
-      stopWaitTime: "10"
+    # - name: tomcat
+    #   type: template.tomcat.Server
+    #   childTemplates:
+    #   - name: webapps
+    #     type: template.tomcat.VirtualHost
+    #   home: /var/lib/tomcat
+    #   startCommand: systemctl start tomcat
+    #   stopCommand: systemctl stop tomcat
+    #   statusCommand: systemctl status tomcat
+    #   startWaitTime: "10"
+    #   stopWaitTime: "10"
     os: UNIX
     connectionType: SUDO
     address: '{{%outputVariables.appserver_public_dns%}}'
