@@ -56,7 +56,7 @@ resource "aws_instance" "appserver" {
 
   provisioner "file" {
     source      = "${path.module}/appserver_install.sh"
-    destination = "~/appserver_installs.sh"
+    destination = "~/appserver_install.sh"
 
     connection {
       type        = "ssh"
