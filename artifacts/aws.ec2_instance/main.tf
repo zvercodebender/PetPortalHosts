@@ -66,7 +66,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = "/home/rick/Documents/keypass/rbroker-us1.pem"
+      private_key = "/home/rick/.ssh/rbroker-us1.pem"
       host        = self.public_dns
     }
   }
@@ -77,7 +77,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = "/home/rick/Documents/keypass/rbroker-us1.pem"
+      private_key = "/home/rick/.ssh/rbroker-us1.pem"
       host        = self.public_dns
     }
   }
