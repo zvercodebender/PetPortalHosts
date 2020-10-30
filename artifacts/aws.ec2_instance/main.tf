@@ -66,7 +66,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = "${file("~/Documents/keypass/rbroker-us1.pem")}"
+      private_key = "${file("/home/rick/Documents/keypass/rbroker-us1.pem")}"
       host        = "${self.public_dns}"
     }
     provisioner "file" {
@@ -76,7 +76,7 @@ resource "aws_instance" "appserver" {
       connection {
         type        = "ssh"
         user        = "ec2-user"
-        private_key = "${file("~/Documents/keypass/rbroker-us1.pem")}"
+        private_key = "${file("/home/rick/Documents/keypass/rbroker-us1.pem")}"
         host        = "${self.public_dns}"
       }
 
