@@ -13,3 +13,7 @@ output "db_port" {
   description = "Public IP addresses of MySQL instances"
   value       = "${aws_db_instance.mysqldb.port}"
 }
+output "DB_URL" {
+  description = "JDBC URL"
+  value = "jdbc:mysql:@${aws_db_instance.mysqldb.endpoint}:mysql"
+}
