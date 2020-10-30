@@ -53,6 +53,7 @@ spec:
       password: '{{DB_PASSWORD}}'
       mySqlHome: /usr
       databaseName: mysql
+      additionalOptions: --host={{%outputVariables.db_address}}
     # - name: tomcat
     #   type: template.tomcat.Server
     #   childTemplates:

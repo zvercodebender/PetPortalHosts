@@ -48,9 +48,9 @@ resource "aws_instance" "appserver" {
 
   user_data     = <<-EOF
                   #!/bin/bash
-                  sudo yum -y install tomcat tomcat-admin-webapps
+                  sudo yum -y install mariadb
                   sudo yum -y java install mysql-connector-java
-                  sudo systemctl enable tomcat
+                  #sudo systemctl enable tomcat
                   #sudo systemctl start tomcat
                   EOF
 
