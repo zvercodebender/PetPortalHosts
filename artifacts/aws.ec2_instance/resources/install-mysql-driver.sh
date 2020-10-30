@@ -1,6 +1,8 @@
-unzip -q /tmp/downloads/mysql-connector-java-5.1.40.zip -d /tmp
+export MYSQL_DRIVER_VERSION="mysql-connector-java-5.1.40"
+curl -LO http://dev.mysql.com/get/Downloads/Connector-J/${MYSQL_DRIVER_VERSION}.zip
+unzip -q /tmp/downloads/${MYSQL_DRIVER_VERSION}.zip -d /tmp
 count=0
-/opt/wildfly/bin/standalone.sh -Djboss.bind.address=localhost -Djboss.bind.address.management=localhost &
+sudo /opt/wildfly/bin/standalone.sh -Djboss.bind.address=localhost -Djboss.bind.address.management=localhost &
 while true
 do
   if [ $count -le 90 ]; then
@@ -12,7 +14,7 @@ do
       count=$(( count+1 ))
     else
       echo "Website is up"
-      /opt/wildfly/bin/jboss-cli.sh -c "deploy /tmp/${MYSQL_DRIVER_VERSION}/${MYSQL_DRIVER_VERSION}-bin.jar"
+      sudo /opt/wildfly/bin/jboss-cli.sh -c "deploy /tmp/${MYSQL_DRIVER_VERSION}/${MYSQL_DRIVER_VERSION}-bin.jar"
       break
     fi
   else
