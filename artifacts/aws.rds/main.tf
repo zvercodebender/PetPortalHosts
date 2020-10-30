@@ -13,9 +13,9 @@ resource "aws_db_instance" "mysqldb" {
   engine_version       = "5.7.19"
   identifier           = "mysqldb"
   instance_class       = "db.t2.large"
-  password             = "{{MYSQL_PASSWD}}"
+  password             = "{{DB_USERNAME}}"
   skip_final_snapshot  = true
   storage_encrypted    = true
-  username             = "{{MYSQL_USER}}"
+  username             = "{{DB_PASSWORD}}"
   vpc_security_group_ids = ["sg-0ede761da972c2900", "sg-0755f4c4ecea46847"]
 }
