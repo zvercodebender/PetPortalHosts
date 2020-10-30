@@ -3,6 +3,9 @@
 export MYSQL_DRIVER_VERSION="mysql-connector-java-5.1.40"
 export wildfly_version="21.0.0"
 
+sudo yum -y install mariadb java
+sudo yum -y java install mysql-connector-java
+
 mkdir -p /tmp/downloads
 cd /tmp/downloads
 curl -LO http://download.jboss.org/wildfly/${wildfly_version}.Final/wildfly-${wildfly_version}.Final.zip
