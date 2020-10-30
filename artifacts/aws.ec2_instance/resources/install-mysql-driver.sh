@@ -12,7 +12,7 @@ do
       count=$(( count+1 ))
     else
       echo "Website is up"
-      /opt/wildfly/bin/jboss-cli.sh -c "deploy /tmp/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar"
+      /opt/wildfly/bin/jboss-cli.sh -c "deploy /tmp/${MYSQL_DRIVER_VERSION}/${MYSQL_DRIVER_VERSION}-bin.jar"
       break
     fi
   else

@@ -52,11 +52,6 @@ resource "aws_instance" "appserver" {
                   sudo yum -y java install mysql-connector-java
                   sudo systemctl enable tomcat
                   #sudo systemctl start tomcat
-                  wget https://download.jboss.org/wildfly/21.0.0.Final/wildfly-21.0.0.Final.zip
-                  cd /opt
-                  sudo unzip /home/ec2-user/wildfly*Final.zip
-                  sudo mv wildfly*Final wildfly
-                  nohup sudo /opt/wildfly/bin/standalone.sh &
                   EOF
 
   provisioner "file" {
@@ -83,13 +78,36 @@ resource "aws_instance" "appserver" {
     }
   }
   provisioner "file" {
-    source      = "${path.module}/resources/*"
-    destination = "~/resources/"
+    source      = "${path.module}/resources/install-mysql-driver.sh"
+    destination = "~/resources/install-mysql-driver.sh"
 
     connection {
       type        = "ssh"
       user        = "ec2-user"
       private_key = file("/home/rick/.ssh/rbroker-us1.pem")
+      host        = self.public_dns
+    }
+  }
+  provisioner "file" {
+    source      = "${path.module}/resources/mgmt-users.properties"
+    destination = "~/resources/mgmt-users.properties"
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("/home/rick/.ssh/rbroker-us1.pem")
+      host        = self.public_dns
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+         "/home/ec2-user/appserver_install.sh"
+         ]
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("~/.ssh/rbroker-us1.pem")
       host        = self.public_dns
     }
   }
