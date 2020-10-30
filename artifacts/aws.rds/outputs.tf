@@ -17,3 +17,7 @@ output "DB_URL" {
   description = "JDBC URL"
   value = "jdbc:mysql:@${aws_db_instance.mysqldb.endpoint}:mysql"
 }
+output "mysqlHostOption" {
+  description = "mysql host option"
+  value = "--host=${aws_db_instance.mysqldb.address}"
+}
