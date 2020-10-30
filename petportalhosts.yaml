@@ -18,9 +18,30 @@ spec:
 - name: !format Applications/PetPortalHosts/servers/%version%
   type: udm.ProvisioningPackage
   templates:
-  - name: sshHost
+  ##########################################################################
+  # Webserver Template
+  - name: webserver
     type: template.overthere.SshHost
-    instanceName: '{{project}}/TEST/{{%outputVariables.ec2_server_public_dns%}}'
+    instanceName: '{{project}}/TEST/webserver'
+    childTemplates:
+    - name: apache
+      type: template.www.ApacheHttpdServer
+      startCommand: systemctl start httpd
+      stopCommand: systemctl stop httpd
+      restartCommand: systemctl restart httpd
+      defaultDocumentRoot: /var/www/html
+      configurationFragmentDirectory: /etc/httpd/httpd.d
+    os: UNIX
+    connectionType: SUDO
+    address: '{{%outputVariables.webserver_public_dns%}}'
+    username: ec2-user
+    privateKeyFile: /opt/xebialabs/xl-deploy-server/conf/rbroker-us1.pem
+    sudoUsername: root
+  ##########################################################################
+  # Appserver Template
+  - name: appserver
+    type: template.overthere.SshHost
+    instanceName: '{{project}}/TEST/appserver'
     childTemplates:
     - name: jbosss
       type: template.jbossdm.StandaloneServer
@@ -37,22 +58,22 @@ spec:
       statusCommand: systemctl status tomcat
       startWaitTime: "10"
       stopWaitTime: "10"
-    - name: apache
-      type: template.www.ApacheHttpdServer
-      startCommand: systemctl start httpd
-      stopCommand: systemctl stop httpd
-      restartCommand: systemctl restart httpd
-      defaultDocumentRoot: /var/www/html
-      configurationFragmentDirectory: /etc/httpd/httpd.d
     os: UNIX
-    address: '{{%outputVariables.ec2_server_public_dns%}}'
+    connectionType: SUDO
+    address: '{{%outputVariables.appserver_public_dns%}}'
     username: ec2-user
     privateKeyFile: /opt/xebialabs/xl-deploy-server/conf/rbroker-us1.pem
+    sudoUsername: root
+
+
+
+
   deployables:
   - name: servers
     type: terraform.Module
     boundTemplates:
-    - !format Applications/PetPortalHosts/servers/%version%/sshHost
+    - !format Applications/PetPortalHosts/servers/%version%/webserver
+    - !format Applications/PetPortalHosts/servers/%version%/appserver
     preScannedPlaceholders: true
     placeholders:
     - AWSRegion

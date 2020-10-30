@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export CLI_VERSION="9.7.0"
-export VERSION="2.0.1"
+export VERSION="2.0.2"
 
 cd artifacts/aws.ec2_instance
 zip -r ../aws.ec2_instance.zip ./*
