@@ -15,13 +15,12 @@ output "webserver_public_dns" {
   description = "Public IP addresses of EC2 instances"
   value       = "${aws_instance.webserver.public_dns}"
 }
-#######################################################
-#  Appserver Variables
-output "appserver_private_dns" {
+output "webserver_private_dns" {
   description = "Private IP addresses of EC2 instances"
   value       = "${aws_instance.appserver.private_dns}"
 }
-
+#######################################################
+#  Appserver Variables
 output "appserver_public_ip" {
   description = "Public IP addresses of EC2 instances"
   value       = "${aws_instance.appserver.public_ip}"
