@@ -102,7 +102,7 @@ resource "aws_instance" "appserver" {
   provisioner "remote-exec" {
     inline = [
          "chmod +x /home/ec2-user/appserver_install.sh",
-         "chomod +x /home/ec2-user/resources/*",
+         "chmod +x /home/ec2-user/resources/*",
          "/home/ec2-user/appserver_install.sh"
          ]
 
