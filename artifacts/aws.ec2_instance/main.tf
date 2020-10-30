@@ -67,17 +67,18 @@ resource "aws_instance" "appserver" {
       type        = "ssh"
       user        = "ec2-user"
       private_key = "/home/rick/Documents/keypass/rbroker-us1.pem"
-      host        = "${self.public_dns}"
+      host        = "${aws_instance.appserver.public_ip}"
     }
-    provisioner "file" {
-      source      = "${path.module}/resources/install-mysql-driver.sh"
-      destination = "~/resources/install-mysql-driver.sh"
+  }
+  provisioner "file" {
+    source      = "${path.module}/resources/install-mysql-driver.sh"
+    destination = "~/resources/install-mysql-driver.sh"
 
-      connection {
-        type        = "ssh"
-        user        = "ec2-user"
-        private_key = "/home/rick/Documents/keypass/rbroker-us1.pem"
-        host        = "${self.public_dns}"
-      }
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = "/home/rick/Documents/keypass/rbroker-us1.pem"
+      host        = "${aws_instance.appserver.public_ip}"
     }
+  }
 }
