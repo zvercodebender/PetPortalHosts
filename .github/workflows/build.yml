@@ -4,10 +4,18 @@ jobs:
   build-pet-portal-hosts-version:
     runs-on: ubuntu-latest
     steps:
+      - uses: oprypin/find-latest-tag@v1
+        with:
+          repository: zvercodebender/PetPortalHosts  # The repository to scan.
+          releases-only: false  # We know that all relevant tags have a GitHub release for them.
+        id: tagkit  # The step ID to refer to later.
+
+      - run: echo "PetPortalHosts is at version ${{ steps.tagkit.outputs.tag }}"
       - uses: actions/checkout@v2
       - name: build
         env:
           XLD_USER: ${{ secrets.XLD_USER }}
           XLD_PASSWD: ${{ secrets.XLD_PASSWD }}
           XLD_URL: "http://xld.rbroker.linkpc.net"
+          TEST_VERSION: ${{ steps.tagkit.outputs.tag }}
         run: ./build.sh
