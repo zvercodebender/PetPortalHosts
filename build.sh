@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export CLI_VERSION="9.7.0"
-export VERSION=`git describer --tags`
+export VERSION=`git describe --tags`
 
 cd artifacts/aws.ec2_instance
 zip -r ../aws.ec2_instance.zip ./*
