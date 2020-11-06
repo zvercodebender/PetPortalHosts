@@ -22,4 +22,4 @@ do
     exit 1
   fi
 done
-rm -rf /opt/wildfly/standalone/configuration/standalone_xml_history/current
+sudo rm -rf /opt/wildfly/standalone/configuration/standalone_xml_history/current

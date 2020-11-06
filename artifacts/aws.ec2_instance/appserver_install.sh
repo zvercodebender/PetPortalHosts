@@ -4,7 +4,7 @@ export MYSQL_DRIVER_VERSION="mysql-connector-java-5.1.40"
 export wildfly_version="21.0.0"
 
 sudo yum -y install mariadb java
-sudo yum -y java install mysql-connector-java
+#sudo yum -y java install mysql-connector-java
 
 mkdir -p /tmp/downloads
 cd /tmp/downloads
@@ -14,4 +14,4 @@ sudo mv /opt/wildfly-* /opt/wildfly
 sudo /home/ec2-user/resources/install-mysql-driver.sh
 sudo cp ~/resources/mgmt-users.properties /opt/wildfly/standalone/configuration/mgmt-users.properties
 sudo cp ~/resources/mgmt-users.properties /opt/wildfly/domain/configuration/mgmt-users.properties
-nohup sudo /opt/wildfly/bin/standalone.sh -Djboss.bind.address=localhost -Djboss.bind.address.management=localhost &
+screen sudo /opt/wildfly/bin/standalone.sh -Djboss.bind.address=localhost -Djboss.bind.address.management=localhost

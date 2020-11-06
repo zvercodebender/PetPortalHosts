@@ -46,12 +46,12 @@ resource "aws_instance" "appserver" {
       Environment = "dev"
     }
 
-  user_data     = <<-EOF
-                  #!/bin/bash
-                  sudo yum -y install mariadb java mysql-connector-java
-                  #sudo systemctl enable tomcat
-                  #sudo systemctl start tomcat
-                  EOF
+#  user_data     = <<-EOF
+#                  #!/bin/bash
+#                  sudo yum -y install mariadb java mysql-connector-java
+#                  #sudo systemctl enable tomcat
+#                  #sudo systemctl start tomcat
+#                  EOF
 
   provisioner "file" {
     source      = "${path.module}/appserver_install.sh"
