@@ -41,7 +41,7 @@ resource "aws_instance" "appserver" {
 
   associate_public_ip_address = true
     tags = {
-      Name = "rrb-appserver"
+      Name = "rick-appserver"
       Terraform   = "true"
       Environment = "dev"
     }
@@ -112,6 +112,11 @@ resource "aws_instance" "appserver" {
       host        = self.public_dns
     }
   }
+
+  timeouts {
+    create = "15m"
+    delete = "15m"
+  }
 }
 
 ##########################################################################
@@ -121,11 +126,16 @@ resource "aws_db_instance" "mysqldb" {
   allocated_storage    = 100
   engine               = "mysql"
   engine_version       = "5.7.19"
-  identifier           = "mysqldb"
+  identifier           = "rick-mysqldb"
   instance_class       = "db.t2.micro"
-  password             = "{{DB_USERNAME}}"
+  password             = var.DB_PASSWORD
   skip_final_snapshot  = true
   storage_encrypted    = false
-  username             = "{{DB_PASSWORD}}"
+  username             = var.DB_USERNAME
   vpc_security_group_ids = ["sg-0c0c05ed8824304f4", "sg-00385650dc20566a2"]
+
+  timeouts {
+    create = "15m"
+    delete = "15m"
+  }
 }
