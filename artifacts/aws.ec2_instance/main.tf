@@ -12,12 +12,12 @@ provider "aws" {
 resource "aws_instance" "webserver" {
   ami                    = "ami-0e01ce4ee18447327"
   instance_type          = "t2.micro"
-//  key_name               = "rbroker-us1"
-  vpc_security_group_ids = ["sg-0c0c05ed8824304f4", "sg-00385650dc20566a2"]
+  key_name               = "bnechyporenko"
+  vpc_security_group_ids = ["sg-022f80ebbbfb0539d"]
 
   associate_public_ip_address = true
     tags = {
-      Name = "rrb-webserver"
+      Name = "rick-webserver"
       Terraform   = "true"
       Environment = "dev"
     }
@@ -36,8 +36,8 @@ resource "aws_instance" "webserver" {
 resource "aws_instance" "appserver" {
   ami                    = "ami-0e01ce4ee18447327"
   instance_type          = "t2.micro"
-//  key_name               = "rbroker-us1"
-  vpc_security_group_ids = ["sg-0c0c05ed8824304f4", "sg-00385650dc20566a2"]
+  key_name               = "bnechyporenko"
+  vpc_security_group_ids = ["sg-022f80ebbbfb0539d"]
 
   associate_public_ip_address = true
     tags = {
@@ -60,7 +60,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("~/.ssh/bnechyporenko.pem")
+      private_key = file("~/.ssh/bnechyporenko-ohio.pem")
       host        = self.public_dns
     }
   }
@@ -72,7 +72,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("~/.ssh/bnechyporenko.pem")
+      private_key = file("~/.ssh/bnechyporenko-ohio.pem")
       host        = self.public_dns
     }
   }
@@ -83,7 +83,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("~/.ssh/bnechyporenko.pem")
+      private_key = file("~/.ssh/bnechyporenko-ohio.pem")
       host        = self.public_dns
     }
   }
@@ -94,7 +94,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("~/.ssh/bnechyporenko.pem")
+      private_key = file("~/.ssh/bnechyporenko-ohio.pem")
       host        = self.public_dns
     }
   }
@@ -108,14 +108,9 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("~/.ssh/bnechyporenko.pem")
+      private_key = file("~/.ssh/bnechyporenko-ohio.pem")
       host        = self.public_dns
     }
-  }
-
-  timeouts {
-    create = "15m"
-    delete = "15m"
   }
 }
 
@@ -132,10 +127,5 @@ resource "aws_db_instance" "mysqldb" {
   skip_final_snapshot  = true
   storage_encrypted    = false
   username             = var.DB_USERNAME
-  vpc_security_group_ids = ["sg-0c0c05ed8824304f4", "sg-00385650dc20566a2"]
-
-  timeouts {
-    create = "15m"
-    delete = "15m"
-  }
+  vpc_security_group_ids = ["sg-022f80ebbbfb0539d"]
 }
