@@ -1,8 +1,7 @@
 # Input variable definitions
 
-
 variable "project" {
-  description = "Project Name"
+  description = "Rick's star project"
   type        = string
-  default     = "ProjectName"
+  default     = "StarProject"
 }

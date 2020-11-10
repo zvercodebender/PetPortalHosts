@@ -35,7 +35,7 @@ spec:
     connectionType: SUDO
     address: '{{%outputVariables.webserver_public_dns%}}'
     username: ec2-user
-    privateKeyFile: /opt/xebialabs/xl-deploy-server/conf/rbroker-us1.pem
+    privateKeyFile: /opt/xebialabs/xl-deploy-server/conf/bnechyporenko.pem
     sudoUsername: root
   ##########################################################################
   # Appserver Template
@@ -71,7 +71,7 @@ spec:
     connectionType: SUDO
     address: '{{%outputVariables.appserver_public_dns%}}'
     username: ec2-user
-    privateKeyFile: /opt/xebialabs/xl-deploy-server/conf/rbroker-us1.pem
+    privateKeyFile: /opt/xebialabs/xl-deploy-server/conf/bnechyporenko.pem
     sudoUsername: root
   #############################################################################
   deployables:
@@ -80,11 +80,8 @@ spec:
     boundTemplates:
     - !format Applications/PetPortalHosts/servers/%version%/webserver
     - !format Applications/PetPortalHosts/servers/%version%/appserver
-    preScannedPlaceholders: true
-    placeholders:
-    - AWSRegion
-    - AWS_SECRET_KEY
-    - AWS_ACCESS_KEY
+    preScannedPlaceholders: false
+    scanPlaceholders: false
     fileEncodings:
       ".+\\.properties": ISO-8859-1
     environmentPath: '{{PROJECT}}/{{PROJECT}}-DEV'

@@ -1,9 +1,9 @@
 # Terraform configuration
 
 provider "aws" {
-  region = "{{AWSRegion}}"
-  access_key = "{{AWS_ACCESS_KEY}}"
-  secret_key = "{{AWS_SECRET_KEY}}"
+  region = var.AWSRegion
+  access_key = var.AWS_ACCESS_KEY
+  secret_key = var.AWS_SECRET_KEY
 }
 
 ##########################################################################
@@ -12,8 +12,8 @@ provider "aws" {
 resource "aws_instance" "webserver" {
   ami                    = "ami-0e01ce4ee18447327"
   instance_type          = "t2.micro"
-  key_name               = "rbroker-us1"
-  vpc_security_group_ids = ["sg-0ede761da972c2900", "sg-0755f4c4ecea46847"]
+//  key_name               = "rbroker-us1"
+  vpc_security_group_ids = ["sg-0c0c05ed8824304f4", "sg-00385650dc20566a2"]
 
   associate_public_ip_address = true
     tags = {
@@ -36,8 +36,8 @@ resource "aws_instance" "webserver" {
 resource "aws_instance" "appserver" {
   ami                    = "ami-0e01ce4ee18447327"
   instance_type          = "t2.micro"
-  key_name               = "rbroker-us1"
-  vpc_security_group_ids = ["sg-0ede761da972c2900", "sg-0755f4c4ecea46847"]
+//  key_name               = "rbroker-us1"
+  vpc_security_group_ids = ["sg-0c0c05ed8824304f4", "sg-00385650dc20566a2"]
 
   associate_public_ip_address = true
     tags = {
@@ -60,7 +60,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("/home/rick/.ssh/rbroker-us1.pem")
+      private_key = file("~/.ssh/bnechyporenko.pem")
       host        = self.public_dns
     }
   }
@@ -72,7 +72,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("~/.ssh/rbroker-us1.pem")
+      private_key = file("~/.ssh/bnechyporenko.pem")
       host        = self.public_dns
     }
   }
@@ -83,7 +83,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("/home/rick/.ssh/rbroker-us1.pem")
+      private_key = file("~/.ssh/bnechyporenko.pem")
       host        = self.public_dns
     }
   }
@@ -94,7 +94,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("/home/rick/.ssh/rbroker-us1.pem")
+      private_key = file("~/.ssh/bnechyporenko.pem")
       host        = self.public_dns
     }
   }
@@ -108,7 +108,7 @@ resource "aws_instance" "appserver" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("~/.ssh/rbroker-us1.pem")
+      private_key = file("~/.ssh/bnechyporenko.pem")
       host        = self.public_dns
     }
   }
@@ -127,5 +127,5 @@ resource "aws_db_instance" "mysqldb" {
   skip_final_snapshot  = true
   storage_encrypted    = false
   username             = "{{DB_PASSWORD}}"
-  vpc_security_group_ids = ["sg-0ede761da972c2900", "sg-0755f4c4ecea46847"]
+  vpc_security_group_ids = ["sg-0c0c05ed8824304f4", "sg-00385650dc20566a2"]
 }
