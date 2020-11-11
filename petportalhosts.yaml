@@ -19,6 +19,11 @@ spec:
   type: udm.ProvisioningPackage
   templates:
   ##########################################################################
+  # Directory
+  - name: directory
+    type: template.core.Directory
+    instanceName: 'Infrastructure/{{project}}/TEST'
+  ##########################################################################
   # Webserver Template
   - name: webserver
     type: template.overthere.SshHost
@@ -80,6 +85,7 @@ spec:
     boundTemplates:
     - !format Applications/PetPortalHosts/servers/%version%/webserver
     - !format Applications/PetPortalHosts/servers/%version%/appserver
+    - !format Applications/PetPortalHosts/servers/%version%/directory
     preScannedPlaceholders: false
     scanPlaceholders: false
     fileEncodings:
