@@ -59,7 +59,7 @@ output "db_port" {
 }
 output "DB_URL" {
   description = "JDBC URL"
-  value = "jdbc:mysql:@${aws_db_instance.mysqldb.endpoint}:mysql"
+  value = "jdbc:mysql://${aws_db_instance.mysqldb.endpoint}/mysql"
 }
 output "mysqlHostOption" {
   description = "mysql host option"

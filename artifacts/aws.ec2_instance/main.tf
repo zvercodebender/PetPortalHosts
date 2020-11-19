@@ -121,7 +121,7 @@ resource "aws_db_instance" "mysqldb" {
   allocated_storage    = 100
   engine               = "mysql"
   engine_version       = "5.7.19"
-  identifier           = "mysqldb"
+  identifier           = "rrb-mysqldb"
   instance_class       = "db.t2.micro"
   password             = "{{DB_USERNAME}}"
   skip_final_snapshot  = true
