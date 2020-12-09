@@ -15,7 +15,7 @@ spec:
 apiVersion: xl-deploy/v1
 kind: Applications
 spec:
-- name: !format Applications/PetPortalHosts/servers/%version%
+- name: !format Applications/PetPortalHosts/servers-{{project}}/%version%
   type: udm.ProvisioningPackage
   templates:
   ##########################################################################
@@ -78,8 +78,8 @@ spec:
   - name: servers
     type: terraform.Module
     boundTemplates:
-    - !format Applications/PetPortalHosts/servers/%version%/webserver
-    - !format Applications/PetPortalHosts/servers/%version%/appserver
+    - !format Applications/PetPortalHosts/servers-{{project}}/%version%/webserver
+    - !format Applications/PetPortalHosts/servers-{{project}}/%version%/appserver
     preScannedPlaceholders: true
     placeholders:
     - AWSRegion
@@ -94,22 +94,3 @@ spec:
     inputVariables:
       project: rrb-aws
     file: !file "artifacts/aws.ec2_instance.zip"
-
-  # - name: database
-  #   type: terraform.Module
-  #   preScannedPlaceholders: true
-  #   placeholders:
-  #   - AWSRegion
-  #   - AWS_SECRET_KEY
-  #   - AWS_ACCESS_KEY
-  #   - MYSQL_USER
-  #   - MYSQL_PASSWD
-  #   fileEncodings:
-  #     ".+\\.properties": ISO-8859-1
-  #   environmentPath: '{{PROJECT}}/{{PROJECT}}-DEV'
-  #   automaticDictionary: "true"
-  #   dictionaryPath: '{{PROJECT}}-db-dic'
-  #   generateCIsFromResources: "true"
-  #   inputVariables:
-  #     project: rrb-aws
-  #   file: !file "artifacts/aws.rds.zip"
