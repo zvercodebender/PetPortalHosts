@@ -1,5 +1,8 @@
 name: Build-PetPortalHosts
-on: [push]
+on:
+  push:
+    tags:
+      - '*'
 jobs:
   build-pet-portal-hosts-version:
     runs-on: ubuntu-latest
