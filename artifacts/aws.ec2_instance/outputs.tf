@@ -3,46 +3,44 @@
 #  Webserver Variables
 output "webserver_public_ip" {
   description = "Public IP addresses of EC2 instances"
-  value       = "${aws_instance.webserver.public_ip}"
+  value       = module.webserver.public_ip
 }
 
 output "webserver_private_ip" {
   description = "Private IP addresses of EC2 instances"
-  value       = "${aws_instance.webserver.private_ip}"
+  value       = module.webserver.private_ip
 }
 
 output "webserver_public_dns" {
   description = "Public IP addresses of EC2 instances"
-  value       = "${aws_instance.webserver.public_dns}"
+  value       = module.webserver.public_dns
 }
 output "webserver_private_dns" {
   description = "Private IP addresses of EC2 instances"
-  value       = "${aws_instance.appserver.private_dns}"
+  value       = module.webserver.private_dns
 }
 #######################################################
 #  Appserver Variables
 output "appserver_public_ip" {
   description = "Public IP addresses of EC2 instances"
-  value       = "${aws_instance.appserver.public_ip}"
+  value       = module.appserver.public_ip
 }
 
 output "appserver_private_ip" {
   description = "Private IP addresses of EC2 instances"
-  value       = "${aws_instance.appserver.private_ip}"
+  value       = module.appserver.private_ip
 }
 
 output "appserver_public_dns" {
   description = "Public IP addresses of EC2 instances"
-  value       = "${aws_instance.appserver.public_dns}"
+  value       = module.appserver.public_dns
 }
 
 output "appserver_private_dns" {
   description = "Private IP addresses of EC2 instances"
-  value       = "${aws_instance.appserver.private_dns}"
+  value       = module.appserver.private_dns
 }
-output "project" {
-  value       = "${var.project}"
-}
+
 #######################################################
 #  MySQL Variables
 output "db_endpoint" {
@@ -64,4 +62,9 @@ output "DB_URL" {
 output "mysqlHostOption" {
   description = "mysql host option"
   value = module.db.mysqlHostOption
+}
+#######################################################
+
+output "project" {
+  value       = "${var.project}"
 }
