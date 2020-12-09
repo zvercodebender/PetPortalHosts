@@ -47,21 +47,21 @@ output "project" {
 #  MySQL Variables
 output "db_endpoint" {
   description = "Public IP addresses of MySQL instances"
-  value       = "${aws_db_instance.mysqldb.endpoint}"
+  value       = module.db.db_endpoint
 }
 output "db_address" {
   description = "Public IP addresses of MySQL instances"
-  value       = "${aws_db_instance.mysqldb.address}"
+  value       = module.db.db_address
 }
 output "db_port" {
   description = "Public IP addresses of MySQL instances"
-  value       = "${aws_db_instance.mysqldb.port}"
+  value       = module.db.db_port
 }
 output "DB_URL" {
   description = "JDBC URL"
-  value = "jdbc:mysql://${aws_db_instance.mysqldb.endpoint}/mysql"
+  value = module.db.DB_URL
 }
 output "mysqlHostOption" {
   description = "mysql host option"
-  value = "--host=${aws_db_instance.mysqldb.address}"
+  value = module.db.mysqlHostOption
 }

@@ -13,7 +13,7 @@ resource "aws_instance" "webserver" {
   ami                    = "ami-0e01ce4ee18447327"
   instance_type          = "t2.micro"
   key_name               = "rbroker-us1"
-  vpc_security_group_ids = ["sg-0ede761da972c2900", "sg-0755f4c4ecea46847"]
+  vpc_security_group_ids = var.my-sg
 
   associate_public_ip_address = true
     tags = {
@@ -37,7 +37,7 @@ resource "aws_instance" "appserver" {
   ami                    = "ami-0e01ce4ee18447327"
   instance_type          = "t2.micro"
   key_name               = "rbroker-us1"
-  vpc_security_group_ids = ["sg-0ede761da972c2900", "sg-0755f4c4ecea46847"]
+  vpc_security_group_ids = var.my-sg
 
   associate_public_ip_address = true
     tags = {
@@ -117,15 +117,7 @@ resource "aws_instance" "appserver" {
 ##########################################################################
 #  RDS Database
 #
-resource "aws_db_instance" "mysqldb" {
-  allocated_storage    = 100
-  engine               = "mysql"
-  engine_version       = "5.7.19"
-  identifier           = "rrb-mysqldb"
-  instance_class       = "db.t2.micro"
-  password             = "{{DB_USERNAME}}"
-  skip_final_snapshot  = true
-  storage_encrypted    = false
-  username             = "{{DB_PASSWORD}}"
-  vpc_security_group_ids = ["sg-0ede761da972c2900", "sg-0755f4c4ecea46847"]
+module "db" {
+    source = "./db"
+    my-sg = var.my-sg
 }
