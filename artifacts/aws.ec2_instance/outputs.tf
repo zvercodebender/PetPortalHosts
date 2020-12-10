@@ -19,6 +19,10 @@ output "webserver_private_dns" {
   description = "Private IP addresses of EC2 instances"
   value       = module.webserver.private_dns
 }
+output "APACHE_HOST" {
+  description = "Private IP addresses of EC2 instances"
+  value       = module.webserver.private_ip
+}
 #######################################################
 #  Appserver Variables
 output "appserver_public_ip" {
@@ -39,6 +43,11 @@ output "appserver_public_dns" {
 output "appserver_private_dns" {
   description = "Private IP addresses of EC2 instances"
   value       = module.appserver.private_dns
+}
+
+output "APPSERVER_HOST" {
+  description = "Private IP addresses of EC2 instances"
+  value       = module.appserver.private_ip
 }
 
 #######################################################
