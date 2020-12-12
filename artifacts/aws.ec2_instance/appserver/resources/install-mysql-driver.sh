@@ -14,7 +14,7 @@ do
       count=$(( count+1 ))
     else
       echo "Website is up"
-      sudo /opt/wildfly/bin/jboss-cli.sh -c "deploy /tmp/${MYSQL_DRIVER_VERSION}/${MYSQL_DRIVER_VERSION}-bin.jar"
+      sudo /opt/wildfly/bin/jboss-cli.sh -c "deploy --name=mysqlDriver /tmp/${MYSQL_DRIVER_VERSION}/${MYSQL_DRIVER_VERSION}-bin.jar"
       break
     fi
   else
@@ -25,3 +25,4 @@ done
 sudo rm -rf /opt/wildfly/standalone/configuration/standalone_xml_history/current
 PID=`/bin/ps ax | grep java | grep -v grep | awk '{print $1}'`
 sudo kill $PID
+sleep 30
