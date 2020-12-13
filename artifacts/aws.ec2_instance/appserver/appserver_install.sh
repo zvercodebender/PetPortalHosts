@@ -15,7 +15,8 @@ sudo /home/ec2-user/resources/install-mysql-driver.sh
 sudo cp ~/resources/mgmt-users.properties /opt/wildfly/standalone/configuration/mgmt-users.properties
 sudo cp ~/resources/mgmt-users.properties /opt/wildfly/domain/configuration/mgmt-users.properties
 echo "###################################################################################"
-/usr/bin/screen -d -m sudo /opt/wildfly/bin/standalone.sh -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=localhost
+#/usr/bin/screen -d -m sudo /opt/wildfly/bin/standalone.sh -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=localhost
+nohup sudo /opt/wildfly/bin/standalone.sh -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=localhost &
 count=0
 while true
 do

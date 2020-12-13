@@ -8,14 +8,14 @@ spec:
 apiVersion: xl-deploy/v1
 kind: Applications
 spec:
-- name: Applications/PetPortalHosts/servers-{{project}}
+- name: Applications/PetPortalHosts/servers
   type: udm.Application
 
 ---
 apiVersion: xl-deploy/v1
 kind: Applications
 spec:
-- name: !format Applications/PetPortalHosts/servers-{{project}}/%version%
+- name: !format Applications/PetPortalHosts/servers/%version%
   type: udm.ProvisioningPackage
   templates:
   ##########################################################################
@@ -78,8 +78,8 @@ spec:
   - name: servers
     type: terraform.Module
     boundTemplates:
-    - !format Applications/PetPortalHosts/servers-{{project}}/%version%/webserver
-    - !format Applications/PetPortalHosts/servers-{{project}}/%version%/appserver
+    - !format Applications/PetPortalHosts/servers/%version%/webserver
+    - !format Applications/PetPortalHosts/servers/%version%/appserver
     preScannedPlaceholders: true
     placeholders:
     - AWSRegion

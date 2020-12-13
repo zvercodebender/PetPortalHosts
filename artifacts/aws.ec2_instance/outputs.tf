@@ -75,13 +75,13 @@ output "mysqlHostOption" {
 #######################################################
 
 output "project" {
-  value       = "${var.project}"
+  value       = var.project
 }
 output "DB_USERNAME" {
-  value       = "petportal"
+  value       = "{{DB_USERNAME}}"
 }
 output "PETPORTAL_TITLE" {
-  value       = "Pet Portal DEVELOPMENT"
+  value       = "{{PETPORTAL_TITLE}}"
 }
 output "APPSERVER_PORT" {
   value      = "8080"
@@ -96,5 +96,5 @@ output "DB_DRIVER" {
   value      = "mysqlDriver_com.mysql.jdbc.Driver_5_1"
 }
 output "DB_PASSWORD" {
-  value      = "petportal"
+  value      = "{{DB_PASSWORD}}"
 }
