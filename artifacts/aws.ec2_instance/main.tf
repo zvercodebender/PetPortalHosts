@@ -1,7 +1,7 @@
 # Terraform configuration
 
 provider "aws" {
-  region = "{{AWSRegion}}"
+  region = var.aws_region
   access_key = "{{AWS_ACCESS_KEY}}"
   secret_key = "{{AWS_SECRET_KEY}}"
 }
@@ -11,6 +11,7 @@ provider "aws" {
 #
 module "webserver" {
     source = "./webserver"
+    my-ami = var.ami
     my-sg = var.my-sg
 }
 ##########################################################################
@@ -18,6 +19,7 @@ module "webserver" {
 #
 module "appserver" {
     source = "./appserver"
+    my-ami = var.ami
     my-sg = var.my-sg
 }
 

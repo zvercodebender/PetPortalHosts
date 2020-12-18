@@ -82,7 +82,6 @@ spec:
     - !format Applications/PetPortalHosts/servers/%version%/appserver
     preScannedPlaceholders: true
     placeholders:
-    - AWSRegion
     - AWS_SECRET_KEY
     - AWS_ACCESS_KEY
     fileEncodings:
@@ -93,4 +92,6 @@ spec:
     generateCIsFromResources: "true"
     inputVariables:
       project: rrb-aws
+      ami: ami-0e01ce4ee18447327
+      aws_region: us-east-2
     file: !file "artifacts/aws.ec2_instance.zip"

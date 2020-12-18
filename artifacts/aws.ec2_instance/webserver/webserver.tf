@@ -4,12 +4,14 @@
 variable "my-sg" {
   type = list(string)
 }
-
+variable "my-ami" {
+  type = string
+}
 ##########################################################################
 #  Webserver
 #
 resource "aws_instance" "webserver" {
-  ami                    = "ami-0e01ce4ee18447327"
+  ami                    = var.my-ami
   instance_type          = "t2.micro"
   key_name               = "rbroker-us1"
   vpc_security_group_ids = var.my-sg
