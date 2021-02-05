@@ -18,6 +18,12 @@ spec:
 - name: !format Applications/PetPortalHosts/servers/%version%
   type: udm.ProvisioningPackage
   templates:
+  - name: InfraTEST
+    type: template.core.Directory
+    instanceName: 'Infrastructure/{{project}}/TEST'
+  - name: EnvTEST
+    type: template.core.Directory
+    instanceName: 'Environments/{{project}}'
   ##########################################################################
   # Webserver Template
   - name: webserver
@@ -80,15 +86,17 @@ spec:
     boundTemplates:
     - !format Applications/PetPortalHosts/servers/%version%/webserver
     - !format Applications/PetPortalHosts/servers/%version%/appserver
+    - !format Applications/PetPortalHosts/servers/%version%/EnvTEST
+    - !format Applications/PetPortalHosts/servers/%version%/InfraTEST
     preScannedPlaceholders: true
     placeholders:
     - AWS_SECRET_KEY
     - AWS_ACCESS_KEY
     fileEncodings:
       ".+\\.properties": ISO-8859-1
-    environmentPath: '{{project}}/{{project}}-DEV'
+    environmentPath: 'Environments/{{project}}/TEST'
     automaticDictionary: "true"
-    dictionaryPath: '{{project}}-dic'
+    dictionaryPath: 'Environments/{{project}}/TEST-dic'
     generateCIsFromResources: "true"
     inputVariables:
       project: rrb-aws

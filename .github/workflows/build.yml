@@ -21,4 +21,5 @@ jobs:
           XLD_PASSWD: ${{ secrets.XLD_PASSWD }}
           XLD_URL: "http://xld.rbroker.linkpc.net"
           VERSION: ${{ steps.tagkit.outputs.tag }}
+          GET_LOCAL: "N"
         run: ./build.sh
