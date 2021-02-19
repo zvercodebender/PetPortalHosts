@@ -13,14 +13,18 @@ module "webserver" {
     source = "./webserver"
     my-ami = var.ami
     my-sg = var.my-sg
+    ssh-key  = var.ssh-key
+    ami-size = var.ami-size
 }
 ##########################################################################
 #  Appserver
 #
 module "appserver" {
-    source = "./appserver"
-    my-ami = var.ami
-    my-sg = var.my-sg
+    source   = "./appserver"
+    my-ami   = var.ami
+    my-sg    = var.my-sg
+    ssh-key  = var.ssh-key
+    ami-size = var.ami-size
 }
 
 ##########################################################################

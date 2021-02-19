@@ -7,13 +7,19 @@ variable "my-sg" {
 variable "my-ami" {
   type = string
 }
+variable "ssh-key" {
+  type    = string
+}
+variable "ami-size" {
+  type         = string
+}
 ##########################################################################
 #  Appserver
 #
 resource "aws_instance" "appserver" {
   ami                    = var.my-ami
-  instance_type          = "t2.micro"
-  key_name               = "rbroker-us1"
+  instance_type          = var.ami-size
+  key_name               = var.ssh-key 
   vpc_security_group_ids = var.my-sg
 
   associate_public_ip_address = true

@@ -102,4 +102,6 @@ spec:
       project: rrb-aws
       ami: ami-0e01ce4ee18447327
       aws_region: us-east-2
+      ssh-key: rbroker-us1
+      ami-size: t2.micro
     file: !file "artifacts/aws.ec2_instance.zip"
